@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>McAi Player – Premium Media Experience</title>
+<meta name="description" content="Ultra smooth HD video & music player with AI features. Premium experience.">
+
+<link rel="icon" href="logo.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+  background:#050505;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* 🌌 LIGHT EFFECT */
+.light{
+  position:fixed;
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle,#ff6a00,transparent);
+  top:20%;
+  left:30%;
+  filter:blur(120px);
+  opacity:0.4;
+  z-index:-1;
+}
+
+/* NAV */
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 10%;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo img{
+  width:40px;
+  border-radius:10px;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 10%;
+  flex-wrap:wrap;
+}
+
+.hero h1{
+  font-size:60px;
+  background:linear-gradient(45deg,#ff6a00,#ff9500);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  color:#aaa;
+  margin-top:10px;
+}
+
+.btn{
+  margin-top:20px;
+  padding:15px 30px;
+  background:linear-gradient(45deg,#ff6a00,#ff9500);
+  border-radius:12px;
+  text-decoration:none;
+  color:white;
+  display:inline-block;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 40px rgba(255,100,0,0.6);
+}
+
+/* 📱 3D PHONE */
+.phone{
+  width:280px;
+  height:560px;
+  border-radius:30px;
+  overflow:hidden;
+  transform-style:preserve-3d;
+  transition:transform 0.2s;
+  box-shadow:0 50px 100px rgba(0,0,0,0.9);
+}
+
+.phone img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* FEATURES */
+.section{
+  padding:100px 10%;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  padding:25px;
+  border-radius:20px;
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.1);
+  transition:0.4s;
+  transform:translateY(50px);
+  opacity:0;
+}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.05);
+  box-shadow:0 20px 60px rgba(255,106,0,0.3);
+}
+
+/* SCREEN STRIP */
+.screens{
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+  padding:20px;
+}
+
+.screens img{
+  height:420px;
+  border-radius:20px;
+  transition:0.3s;
+}
+
+.screens img:hover{
+  transform:scale(1.1);
+}
+
+/* CTA */
+.cta{
+  text-align:center;
+  padding:100px 20px;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  color:#777;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="light"></div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="logo">
+    <img src="logo.png">
+    <b>McAi Player</b>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div>
+    <h1>Media Player Reimagined</h1>
+    <p>AI-powered playback. Ultra smooth performance. Built for perfection.</p>
+    <a href="https://play.google.com/store/apps/details?id=app.mcai.videoplayer" class="btn">Download</a>
+  </div>
+
+  <div class="phone" id="phone">
+    <img id="slider" src="video.png">
+  </div>
+
+</section>
+
+<!-- FEATURES -->
+<section class="section">
+  <div class="grid">
+    <div class="card">🤖 AI Scene Intelligence</div>
+    <div class="card">🎬 Smooth Playback Engine</div>
+    <div class="card">🎧 Advanced Audio System</div>
+    <div class="card">⚡ High Performance</div>
+  </div>
+</section>
+
+<!-- SCREENSHOTS -->
+<section class="section">
+  <div class="screens">
+    <img src="video.png">
+    <img src="audio.png">
+    <img src="controls.png">
+    <img src="ai.png">
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Experience the Future</h2>
+  <a href="https://play.google.com/store/apps/details?id=app.mcai.videoplayer" class="btn">Install Now</a>
+</section>
+
+<footer>© 2026 McAi Player</footer>
+
+<script>
+/* 🔄 AUTO SLIDER */
+const imgs=["video.png","audio.png","controls.png","ai.png"];
+let i=0;
+
+setInterval(()=>{
+  i=(i+1)%imgs.length;
+  document.getElementById("slider").src=imgs[i];
+},2500);
+
+/* 🧊 3D TILT */
+const phone=document.getElementById("phone");
+
+document.addEventListener("mousemove",(e)=>{
+  let x=(window.innerWidth/2 - e.clientX)/30;
+  let y=(window.innerHeight/2 - e.clientY)/30;
+  phone.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
+});
+
+/* ✨ SCROLL ANIMATION */
+const cards=document.querySelectorAll(".card");
+
+window.addEventListener("scroll",()=>{
+  cards.forEach(card=>{
+    let top=card.getBoundingClientRect().top;
+    if(top<window.innerHeight-100){
+      card.style.opacity=1;
+      card.style.transform="translateY(0)";
+    }
+  });
+});
+</script>
+
+</body>
+</html>
