@@ -6,10 +6,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>McAi Player – HD Video & Music Player</title>
-<meta name="description" content="Premium HD video and music player with AI features, smooth playback, and advanced controls.">
+<meta name="description" content="Premium HD video and music player with AI features, ultra smooth playback, and advanced controls.">
 
-<link rel="icon" href="logo.png">
-<link rel="shortcut icon" href="logo.png">
+<!-- 🔒 FORCE HTTPS -->
+<script>
+if (location.protocol !== 'https:') {
+  location.replace('https://' + location.hostname + location.pathname);
+}
+</script>
+
+<!-- 🔐 FIX MIXED CONTENT -->
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+<!-- 🎯 FAVICON -->
+<link rel="icon" type="image/png" sizes="32x32" href="/logo.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/logo.png">
+<link rel="apple-touch-icon" href="/logo.png">
+
+<!-- 🚀 SEO -->
+<meta name="theme-color" content="#ff6a00">
+<meta property="og:title" content="McAi Player – HD Video Player">
+<meta property="og:description" content="AI-powered video & music player with smooth playback">
+<meta property="og:image" content="https://mcaiplayer.me/logo.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -22,7 +40,7 @@ body{
   overflow-x:hidden;
 }
 
-/* 🔥 3D BACKGROUND */
+/* 🔥 3D BG */
 canvas{
   position:fixed;
   top:0;
@@ -51,7 +69,7 @@ canvas{
 
 /* HERO */
 .hero{
-  height:100vh;
+  min-height:100vh;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -87,7 +105,7 @@ canvas{
   box-shadow:0 0 40px rgba(255,106,0,0.6);
 }
 
-/* 📱 PHONE */
+/* PHONE */
 .phone{
   width:280px;
   height:560px;
@@ -134,7 +152,7 @@ canvas{
   display:flex;
   gap:20px;
   padding:20px;
-  flex-wrap:wrap; /* ✅ no horizontal scroll */
+  flex-wrap:wrap;
   justify-content:center;
 }
 
@@ -142,11 +160,10 @@ canvas{
   height:420px;
   border-radius:20px;
   transition:0.3s;
-  will-change: transform;
 }
 
 .screens img:hover{
-  transform:scale(1.05); /* smaller scale */
+  transform:scale(1.05);
 }
 
 /* CTA */
@@ -161,14 +178,13 @@ footer{
   color:#777;
 }
 
-  /* 📱 MOBILE RESPONSIVE */
+/* 📱 MOBILE */
 @media (max-width: 768px){
 
   .hero{
     flex-direction:column;
     text-align:center;
     gap:40px;
-    height:auto;
     padding:40px 20px;
   }
 
@@ -201,19 +217,6 @@ footer{
   .screens img{
     width:90%;
     height:auto;
-  }
-}
-
-/* 💻 TABLET */
-@media (max-width: 1024px){
-
-  .hero h1{
-    font-size:48px;
-  }
-
-  .phone{
-    width:240px;
-    height:500px;
   }
 }
 </style>
@@ -278,7 +281,7 @@ footer{
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
-/* 🎬 3D BACKGROUND */
+/* 🔥 3D BG */
 let scene=new THREE.Scene();
 let camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
 let renderer=new THREE.WebGLRenderer({canvas:document.getElementById('bg'),alpha:true});
@@ -287,7 +290,9 @@ renderer.setSize(window.innerWidth,window.innerHeight);
 let geometry=new THREE.BufferGeometry();
 let vertices=[];
 
-for(let i=0;i<2500;i++){
+let count = window.innerWidth < 768 ? 1200 : 2500;
+
+for(let i=0;i<count;i++){
   vertices.push((Math.random()*2-1)*5);
   vertices.push((Math.random()*2-1)*5);
   vertices.push((Math.random()*2-1)*5);
@@ -308,7 +313,7 @@ function animate(){
 }
 animate();
 
-/* 📱 IMAGE SLIDER */
+/* 📱 SLIDER */
 const imgs=["video.png","audio.png","controls.png","ai.png"];
 let i=0;
 
@@ -317,14 +322,16 @@ setInterval(()=>{
   document.getElementById("slider").src=imgs[i];
 },2500);
 
-/* 🧊 PHONE TILT */
+/* 💻 TILT (desktop only) */
 const phone=document.getElementById("phone");
 
-document.addEventListener("mousemove",(e)=>{
-  let x=(window.innerWidth/2-e.clientX)/40;
-  let y=(window.innerHeight/2-e.clientY)/40;
-  phone.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
-});
+if(window.innerWidth > 768){
+  document.addEventListener("mousemove",(e)=>{
+    let x=(window.innerWidth/2-e.clientX)/40;
+    let y=(window.innerHeight/2-e.clientY)/40;
+    phone.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
+  });
+}
 
 /* ✨ SCROLL ANIMATION */
 const cards=document.querySelectorAll(".card");
