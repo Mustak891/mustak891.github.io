@@ -24,6 +24,7 @@
 body{
   background:#000;
   color:white;
+  overflow-x:hidden;
 }
 
 /* NAV */
@@ -82,15 +83,29 @@ body{
   border-radius:50px;
   text-decoration:none;
   font-weight:600;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
 }
 
 /* SECTION */
 .section{
   padding:100px 8%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
   text-align:center;
+}
+
+/* TEXT ANIMATION */
+.fade-up{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+}
+
+.fade-up.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
 .section h2{
@@ -102,6 +117,8 @@ body{
   max-width:600px;
   color:#bbb;
   line-height:1.6;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 /* IMAGE */
@@ -113,6 +130,11 @@ body{
   width:280px;
   border-radius:25px;
   box-shadow:0 30px 80px rgba(0,0,0,0.7);
+  transition:0.5s;
+}
+
+.image img:hover{
+  transform:scale(1.05);
 }
 
 /* FOOTER */
@@ -153,7 +175,7 @@ footer{
 </div>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero fade-up">
   <h1>Media Player Reimagined</h1>
   <p>
   A powerful HD video & music player with AI features, smooth playback, and full control — built for a premium experience.
@@ -162,7 +184,7 @@ footer{
 </section>
 
 <!-- VIDEO -->
-<section class="section">
+<section class="section fade-up">
   <h2>All your videos. One place.</h2>
   <p>
   Play all your videos smoothly with support for multiple formats. Enjoy lag-free playback and high-quality visuals every time.
@@ -173,7 +195,7 @@ footer{
 </section>
 
 <!-- AUDIO -->
-<section class="section">
+<section class="section fade-up">
   <h2>Your music. Perfectly organized.</h2>
   <p>
   Experience rich sound with equalizer, bass boost, and advanced audio controls designed for the best listening experience.
@@ -184,7 +206,7 @@ footer{
 </section>
 
 <!-- CONTROLS -->
-<section class="section">
+<section class="section fade-up">
   <h2>Control everything effortlessly.</h2>
   <p>
   Adjust brightness, volume, and playback using simple gestures. Built for smooth and intuitive control.
@@ -195,7 +217,7 @@ footer{
 </section>
 
 <!-- AI -->
-<section class="section">
+<section class="section fade-up">
   <h2>AI that understands your video.</h2>
   <p>
   Analyze video scenes instantly with smart AI insights. Discover a new way to interact with your content.
@@ -206,7 +228,7 @@ footer{
 </section>
 
 <!-- CTA -->
-<section class="section">
+<section class="section fade-up">
   <h2>Experience the future of media.</h2>
   <p>
   No subscriptions. No complications. Just a powerful, intelligent media player.
@@ -217,6 +239,26 @@ footer{
 <footer>
   © 2026 McAi Player
 </footer>
+
+<script>
+
+/* 🔥 SCROLL ANIMATION (Apple-style) */
+
+const elements = document.querySelectorAll('.fade-up');
+
+function reveal(){
+  elements.forEach(el=>{
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100){
+      el.classList.add('show');
+    }
+  });
+}
+
+window.addEventListener('scroll', reveal);
+window.addEventListener('load', reveal);
+
+</script>
 
 </body>
 </html>
