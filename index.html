@@ -133,18 +133,20 @@ canvas{
 .screens{
   display:flex;
   gap:20px;
-  overflow-x:auto;
   padding:20px;
+  flex-wrap:wrap; /* ✅ no horizontal scroll */
+  justify-content:center;
 }
 
 .screens img{
   height:420px;
   border-radius:20px;
   transition:0.3s;
+  will-change: transform;
 }
 
 .screens img:hover{
-  transform:scale(1.1);
+  transform:scale(1.05); /* smaller scale */
 }
 
 /* CTA */
@@ -157,6 +159,62 @@ footer{
   text-align:center;
   padding:30px;
   color:#777;
+}
+
+  /* 📱 MOBILE RESPONSIVE */
+@media (max-width: 768px){
+
+  .hero{
+    flex-direction:column;
+    text-align:center;
+    gap:40px;
+    height:auto;
+    padding:40px 20px;
+  }
+
+  .hero h1{
+    font-size:36px;
+  }
+
+  .phone{
+    width:220px;
+    height:440px;
+  }
+
+  .nav{
+    padding:15px 20px;
+  }
+
+  .section{
+    padding:60px 20px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .screens{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .screens img{
+    width:90%;
+    height:auto;
+  }
+}
+
+/* 💻 TABLET */
+@media (max-width: 1024px){
+
+  .hero h1{
+    font-size:48px;
+  }
+
+  .phone{
+    width:240px;
+    height:500px;
+  }
 }
 </style>
 
@@ -229,7 +287,7 @@ renderer.setSize(window.innerWidth,window.innerHeight);
 let geometry=new THREE.BufferGeometry();
 let vertices=[];
 
-for(let i=0;i<5000;i++){
+for(let i=0;i<2500;i++){
   vertices.push((Math.random()*2-1)*5);
   vertices.push((Math.random()*2-1)*5);
   vertices.push((Math.random()*2-1)*5);
